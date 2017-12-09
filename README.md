@@ -1,15 +1,7 @@
-CUED PhD thesis template
+# LaTeX Thesis template
+## Based on the CUED PhD thesis template
 ========================
-
-[![Join the chat at https://gitter.im/kks32/phd-thesis-template](https://badges.gitter.im/kks32/phd-thesis-template.svg)](https://gitter.im/kks32/phd-thesis-template?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-> A LaTeX / XeLaTeX / LuaLaTeX PhD thesis template for Cambridge University Engineering Department.
-
-[![Build Status](https://api.travis-ci.org/kks32/phd-thesis-template.svg)](https://travis-ci.org/kks32/phd-thesis-template)
-[![License MIT](http://img.shields.io/badge/license-MIT-brightgreen.svg)](license.md)
-[![Version](http://img.shields.io/badge/version-2.2-brightgreen.svg)](https://github.com/kks32/phd-thesis-template/releases/latest)
-
-## Author(s)
-*   Krishna Kumar
+> A LaTeX / XeLaTeX / LuaLaTeX PhD thesis template. Based on the work by  Krishna Kumar
 
 --------------------------------------------------------------------------------
 ## Features
@@ -42,7 +34,6 @@ CUED PhD thesis template
 
 *   Add supervisor and/or advisor to your PhD thesis or MPhil report
 
-*   A LyX Template is now available at [https://github.com/kks32/PhDThesisLyX/](https://github.com/kks32/PhDThesisLyX/)
 
 --------------------------------------------------------------------------------
 
@@ -52,15 +43,13 @@ CUED PhD thesis template
 
 This template supports `XeLaTeX` compilation chain. To generate  PDF run
 
-    latexmk -xelatex thesis.tex
-    makeindex thesis.nlo -s nomencl.ist -o thesis.nls
-    latexmk -xelatex -g thesis.tex
+    latexmk -pdf -e '$pdflatex=q/xelatex %O %S/' thesis
 
 ## Building your thesis - LuaLaTeX
 
 ### Using latexmk (Unix/Linux/Windows)
 
-This template supports `LuaLaTeX` compilation chain. To generate  PDF run
+This template supports `XeLaTeX` compilation chain. To generate  PDF run
 
     latexmk -pdflatex=lualatex -pdf thesis.tex
 
@@ -85,27 +74,7 @@ To build the `PDF` version of your thesis, run:
     make
 
 
-This build procedure uses `pdflatex` with `bibtex` and will produce `thesis.pdf`.
-To use `pdflatex` with `biblatex`, you should run:
-
-    make BIB_STRATEGY=biblatex
-
-To use `XeLaTeX`, you should run:
-
-    make BUILD_STRATEGY=xelatex
-
-or with `biblatex`
-
-    make BUILD_STRATEGY=xelatex BIB_STRATEGY=biblatex
-
-To use `LuaLaTeX`, you should run:
-
-    make BUILD_STRATEGY=lualatex
-
-or with `biblatex`
-
-    make BUILD_STRATEGY=lualatex BIB_STRATEGY=biblatex
-
+This build procedure uses `pdflatex` and will produce `thesis.pdf`.
 
 To produce `DVI` and `PS` versions of your document, you should run:
 
@@ -287,7 +256,7 @@ the bottom of the page. Pagewise line numbering is added on every page. `draft` 
 
 ### Choosing the page style
 
-`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout. To choose a page style, include it in the `documentclass` options: `\documentclass[PageStyleI]{Classes/PhDThesisPSnPDF}`. Alternatively, page style can be changed by adding `\pagestyle{PageStyleI}` or `\pagestyle{PageStyleII}` in `thesis.tex`. Note: Using `\pagestyle` command will override `documentclass` options when used globally.
+`PhDThesisPSnPDF` defines 3 different page styles (header and footer). The following definition is for `twoside` layout.
 
 * `default (leave empty)`: For Page Numbers in Header (Left Even, Right Odd) and Chapter Name in Header (Right Even) and Section #. Section Name (Left Odd). Blank Footer.
 
@@ -316,50 +285,54 @@ the bottom of the page. Pagewise line numbering is added on every page. `draft` 
 ### Changing the visual style of chapter headings
 
 The visual style of chapter headings can be modified using the `titlesec` package. Edit the following lines in the `preamble.tex` file.
-
-        \RequirePackage{titlesec}
-        \newcommand{\PreContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\Large}
-        {\Large\filleft{\chaptertitlename} \Huge\thechapter}
-        {1ex}{}
-        [\vspace{1ex}\titlerule]}
-        \newcommand{\ContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\huge}
-        {\Large\filleft{\chaptertitlename} \Huge\thechapter}{1ex}
-        {\titlerule\vspace{1ex}\filright}
-        [\vspace{1ex}\titlerule]}
-        \newcommand{\PostContentTitleFormat}{\PreContentTitleFormat}
-        \PreContentTitleFormat
+```
+\RequirePackage{titlesec}
+\newcommand{\PreContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\Large}
+{\Large\filleft{\chaptertitlename} \Huge\thechapter}
+{1ex}{}
+[\vspace{1ex}\titlerule]}
+\newcommand{\ContentTitleFormat}{\titleformat{\chapter}[display]{\scshape\huge}
+{\Large\filleft{\chaptertitlename} \Huge\thechapter}{1ex}
+{\titlerule\vspace{1ex}\filright}
+[\vspace{1ex}\titlerule]}
+\newcommand{\PostContentTitleFormat}{\PreContentTitleFormat
+\PreContentTitleFormat
+```
 
 ### Custom settings
 
 *   The depth for the table of contents can be set using:
-
-		\setcounter{secnumdepth}{3}
-		\setcounter{tocdepth}{3}
+```
+\setcounter{secnumdepth}{3}
+\setcounter{tocdepth}{3}
+```
     A depth of [3] indicates to a level of `\subsubsection` or #.#.#.#. Default set as 2.
 
 *   To hide sections from appearing in TOC use: `\tochide\section{Section name}` in your TeX files
 
 *   Define custom caption style for figure and table caption in `preamble.tex` using:
-
-        \RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}
+```
+\RequirePackage[small,bf,figurename=Fig.,labelsep=space,tableposition=top]{caption}
+```
 
 *   Uncomment the following lines in `preamble.tex` to force a figure to be displayed in a particular location. Use `H` when including graphics. Note `H` instead of `h`.
-
-		\usepackage{float}
-		\restylefloat{figure}
+```
+\usepackage{float}
+\restylefloat{figure}
+```
 
 *   Bibliography with Author-Year Citation in `preamble.tex`:
+```
+\RequirePackage[round, sort, numbers, authoryear]{natbib}
+```
 
-        \RequirePackage[round, sort, numbers, authoryear]{natbib}
-
-*   Line spacing for the entire document can be specified in `preamble.tex`. Uncomment the line spacing you prefer. e.g.,
-		\onehalfspacing
+*   Line spacing for the entire document can be specified in `preamble.tex`. Uncomment the line spacing you prefer. e.g., `\onehalfspacing`
 
 ### Nomenclature definition
 
 * To use nomenclature in your chapters:
 
-        \nomenclature[g-pi]{$\pi$}{ $\simeq 3.14\ldots$}
+        `\nomenclature[g-pi]{$\pi$}{ $\simeq 3.14\ldots$}`
 
     The sort keys have prefix. In this case a prefix of `g` is used to denote Greek Symbols, followed by `-pi` or `-sort_key`. Use a `-` to separate sort key from the prefixes. The standard prefixes defined in this class are:
 
@@ -377,7 +350,7 @@ The visual style of chapter headings can be modified using the `titlesec` packag
 
 *   You can change the Title of Nomenclature to Notations or Symbols in the `preamble.tex` using:
 
-        \renewcommand\nomname{Symbols}
+        `\renewcommand\nomname{Symbols}`
 
  TexStudio's default compile option doesn't include `nomenclature`, to compile your document with the nomenclature, do the following:
 
@@ -389,7 +362,7 @@ Alternatively, you can use the `compile-thesis-windows.bat` file or run `make` o
 ## To-do Notes
 
 To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a note}` anywhere in your chapters. To activate this feature, you need to uncomment the following lines in `preamble.tex`. To-do notes will be available only in the `draft` or `draftclassic` and not in the final thesis.
-
+```
 	\ifsetDraft
 		\usepackage[colorinlistoftodos]{todonotes}
 			\newcommand{\mynote}[1]
@@ -398,7 +371,7 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 		\newcommand{\mynote}[1]{}
 		\newcommand{\listoftodos}{}
 	\fi
-
+```
 
 ## General guidelines
 [Why is it important to follow good practices and not get killed by a Velociraptor ;)](http://www.xkcd.com/292/)
@@ -430,10 +403,10 @@ To include custom to-do notes in your pdf document use  `\mynote{Hey! I have a n
 #### _Q2_: Where can I find newer versions of the University of Cambridge crest/logos?
 
 The university updates its crest every now and then. You can find up-to-date
-logos on [this page](http://www.cam.ac.uk/brand-resources/about-the-logo/logo-downloads)
+logos on [this page](http://www.admin.cam.ac.uk/offices/communications/services/logos/)
 (subject to change without notice).
 
-Download and exchange the new logos with `University_Crest.eps` and/or `University_Crest.pdf`. I'll try to keep the crest up to date.
+Download and exchange the new logos with `CUni.eps` and/or `CUni.pdf`. I'll try to keep the crest up to date.
 
 #### _Q3_: Where can I find the guidelines to submit my thesis and requirements?
 
@@ -457,7 +430,7 @@ or
 #### _Q5_: How do I use a system font (libertine)?
 
 To use a system font (open type) font with XeLaTeX, please select `customfont` option in the `documentclass` in `thesis.tex`. Add the path and font name to the custom font definition in `preamble.tex`
-
+```
     \ifsetCustomFont
       \setmainfont[
         Path              = ./libertine/opentype/,
@@ -469,7 +442,7 @@ To use a system font (open type) font with XeLaTeX, please select `customfont` o
       ] {libertine}
       \newfontfamily\libertinesystemfont{Linux Libertine O}
     \fi
-
+```
 Please use XeLaTeX tool chain with LaTeXmk.
 
 #### _Q6_: I found a bug in the template. Where do I report bugs?

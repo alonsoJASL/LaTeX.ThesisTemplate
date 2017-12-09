@@ -1,5 +1,5 @@
 #!/bin/bash
-# A script to compile the PhD Thesis - Krishna Kumar 
+# A script to compile the PhD Thesis - Krishna Kumar
 # Distributed under GPLv2.0 License
 
 compile="compile";
@@ -11,6 +11,8 @@ if [ $1 = $clean ]; then
 	echo "Cleaning please wait ..."
 	rm -f *~
 	rm -rf *.aux
+	rm -rf ./chapters/*.aux
+	rm -rf ./prologue/*.aux
 	rm -rf *.bbl
 	rm -rf *.blg
 	rm -rf *.d
@@ -28,7 +30,8 @@ if [ $1 = $clean ]; then
 	rm -rf $filename.pdf
 	rm -rf $filename.ps
 	rm -rf $filename.dvi
-	rm -rf *#* 
+	rm -rf *#*
+
 	echo "Cleaning complete!"
 	exit
 else
@@ -46,6 +49,8 @@ if [ $1 = $clean ]; then
 	echo "Cleaning please wait ..."
 	rm -f *~
 	rm -rf *.aux
+	rm -rf ./chapters/*.aux
+	rm -rf ./prologue/*.aux
 	rm -rf *.bbl
 	rm -rf *.blg
 	rm -rf *.d
@@ -63,13 +68,13 @@ if [ $1 = $clean ]; then
 	rm -rf $filename.pdf
 	rm -rf $filename.ps
 	rm -rf $filename.dvi
-	rm -rf *#* 
+	rm -rf *#*
 	echo "Cleaning complete!"
 	exit
 elif [ $1 = $compile ]; then
 	echo "Compiling your PhD Thesis...please wait...!"
 	pdflatex -interaction=nonstopmode $filename.tex
-	bibtex $filename.aux 	
+	bibtex $filename.aux
 	makeindex $filename.aux
 	makeindex $filename.idx
 	makeindex $filename.nlo -s nomencl.ist -o $filename.nls
