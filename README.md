@@ -1,7 +1,7 @@
 # LaTeX Thesis template
 ## Based on the CUED PhD thesis template
-========================
-> A LaTeX / XeLaTeX / LuaLaTeX PhD thesis template. Based on the work by  Krishna Kumar
+
+> A LaTeX / XeLaTeX / LuaLaTeX PhD thesis template. Forked from the work by [Krishna Kumar.](https://github.com/kks32/phd-thesis-template)
 
 --------------------------------------------------------------------------------
 ## Features
