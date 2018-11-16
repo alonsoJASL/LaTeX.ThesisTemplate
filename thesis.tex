@@ -1,7 +1,7 @@
 % ******************************* PhD Thesis Template **************************
 % Please have a look at the README.md file for info on how to use the template
 
-\documentclass[a4paper, 12pt, times, numbered, print,index,custombib]
+\documentclass[a4paper, 10pt, twoside, numbered, print, index]
               {Classes/PhDThesisPSnPDF}
 
 \input{docsettings/preamble}
@@ -13,7 +13,7 @@
 \fi
 
 \ifdefineChapter
- \includeonly{Chapter3/chapter3}
+ \includeonly{chapters/chapt3}
 \fi
 
 \begin{document}
@@ -23,41 +23,42 @@
   \maketitle
 \end{titlepage}
 
-\include{prologue/dedication}
-\include{prologue/declaration}
-\include{prologue/acknowledgement}
 \include{prologue/abstract}
+\include{prologue/declaration}
+\include{prologue/dedication}
+\include{prologue/acknowledgement}
 
 \tableofcontents
 \listoffigures
 \listoftables
 % space can be set as 2em between symbol and description
-%\printnomenclature[3em]
-\printnomenclature
-
+\printnomenclature[8em]
+%\printnomenclature
+\include{chapters/app2}
 \mainmatter
 
 \include{chapters/intro}
-\include{chapters/chapter1}
-\include{chapters/chapter2}
-\include{chapters/chapter3}
-%\include{chapters/chapter4}
-%\include{chapters/chapter5}
-%\include{chapters/chapter6}
-%\include{chapters/chapter7}
+\include{chapters/chapt2} % Background: DATA
+\include{chapters/chapt3} % Background: IMAGE ANALYSIS AND TRACKING
+\include{chapters/chapt4} % Junction detection (Anglegram)
+%\include{chapters/chapt4bis} % Segmentation
+\include{chapters/chapt5} % Macrosight: Cell shape tracking...
+\include{chapters/chapt6} % Results
+\include{chapters/conclusion}
 
 %\backmatter
 
 \begin{spacing}{0.9}
-\bibliographystyle{apalike} % or unsrt, plainnat, IEEEtraN, ...
+%\bibliographystyle{unsrt} % or unsrt, unsrtnat, plainnat, IEEEtraN, ...
+\bibliographystyle{unsrtnat} % or unsrt, plainnat, IEEEtraN, ksfh_nat...
 \cleardoublepage
-\bibliography{docsettings/references} % Path to your References.bib file
+\bibliography{docsettings/myrefs} % Path to your References.bib file
 
 \end{spacing}
 
 \begin{appendices}
-\include{app/appendix1}
-\include{app/appendix2}
+\include{chapters/app1}
+\include{chapters/app3}
 \end{appendices}
 
 \printthesisindex % If index is present

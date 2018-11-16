@@ -1,0 +1,3 @@
+xlabel([]);
+ylabel([]);
+zlabel([]);

@@ -472,7 +472,7 @@ supported!}
 \ifPHD@authoryear
   \ifPHD@biblatex
     \RequirePackage[backend=biber, style=authoryear, citestyle=alphabetic,
-      sorting=nty, natbib=true]{biblatex}
+      sorting=none, natbib=true]{biblatex}
     \setBiBLaTeXtrue
   \else
     \RequirePackage[round, sort, numbers, authoryear]{natbib} %author year
@@ -1071,12 +1071,12 @@ wish to left align your text}
 \RequirePackage[intoc]{nomencl}
 \makenomenclature
 \renewcommand{\nomgroup}[1]{%
-\ifthenelse{\equal{#1}{A}}{\item[\textbf{Roman Symbols}]}{%
-\ifthenelse{\equal{#1}{G}}{\item[\textbf{Greek Symbols}]}{%
+\ifthenelse{\equal{#1}{A}}{\item[\textbf{Mathematical Notation}]}{%
+\ifthenelse{\equal{#1}{G}}{\item[\textbf{Notation specific to chapter 2}]}{%
 \ifthenelse{\equal{#1}{Z}}{\item[\textbf{Acronyms / Abbreviations}]}{%
-\ifthenelse{\equal{#1}{R}}{\item[\textbf{Superscripts}]}{%
-\ifthenelse{\equal{#1}{S}}{\item[\textbf{Subscripts}]}{%
-\ifthenelse{\equal{#1}{X}}{\item[\textbf{Other Symbols}]}
+\ifthenelse{\equal{#1}{R}}{\item[\textbf{Notation specific to chapter 3}]}{%
+\ifthenelse{\equal{#1}{X}}{\item[\textbf{Notation specific to \texttt{macrosight}}]}{%
+\ifthenelse{\equal{#1}{M}}{\item[\textbf{\textsc{Matlab} functions}]}
 {}
 }% matches mathematical symbols > X
 }% matches Subscripts           > S
